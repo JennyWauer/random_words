@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import random
 import string
 
@@ -10,3 +10,8 @@ def random_word(length):
     letters = string.ascii_uppercase
     word = ''.join(random.choice(letters) for i in range(length))
     return word
+
+def generate(request):
+    request.session['counter'] += 1
+    random_word(16)
+    return redirect('/')
